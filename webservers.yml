@@ -1,0 +1,18 @@
+---
+- hosts: "tag_instance_role_{{ cluster_id }}_webserver"
+  gather_facts: no
+  become: true
+  pre_tasks:
+    # set up yum
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: enable and start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    # put something unique in each index.html
+  roles:
+    - rhtps.800-53
