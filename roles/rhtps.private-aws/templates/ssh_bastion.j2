@@ -1,0 +1,12 @@
+Host 192.168.*
+  ProxyCommand ssh -W %h:%p {{ bastion_fqdn }}
+  IdentityFile ~/ansible_workshop.pem
+
+Host {{ bastion_fqdn }}
+  Hostname {{ bastion_fqdn }}
+  User {{ ec2_username }}
+  IdentityFile ~/ansible_workshop.pem
+  ForwardAgent yes
+  ControlMaster auto
+  ControlPath ~/.ssh/ansible-%r@%h:%p
+  ControlPersist 5m

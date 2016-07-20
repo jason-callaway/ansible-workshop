@@ -1,0 +1,4 @@
+---
+# vars file for vnc
+vnc_username: "{{ lookup('env','vnc_username') }}"
+vnc_password: "{{ lookup('env','vnc_password') }}"

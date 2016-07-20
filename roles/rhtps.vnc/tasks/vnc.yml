@@ -1,0 +1,48 @@
+---
+# Could take up to 20 minutes
+- name: Install the 'Gnome desktop' environment group (takes a while)
+  yum:
+    name: "@^Server with GUI"
+    state: present
+  async: 1200
+  poll: 60
+
+- name: Install TigerVNC
+  yum:
+    name: tigervnc-server
+    state: present
+
+- name: Copy TigerVNC service file
+  command: cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+
+- name: Configure TigerVNC service file
+  command: "sed -i -e 's/<USER>/{{ vncuser }}/g' /etc/systemd/system/vncserver@.service"
+
+- name: Create osebastion user
+  user:
+    name: "{{ vncuser }}"
+    state: present
+
+- name: build set_vncpasswd.sh
+  template:
+    src: set_vncpasswd.j2
+    dest: /tmp/set_vncpasswd.sh
+    owner: root
+    mode: 0700
+    force: yes
+
+- name: Execute set_vncpasswd.sh
+  command: /tmp/set_vncpasswd.sh
+
+- name: Reload systemctl
+  command: systemctl daemon-reload
+
+# This service won't start. If I log into the system and manually run:
+#   /usr/sbin/runuser -l osedisconn -c /usr/bin/vncserver
+# and then interactively set the password, the service will start.
+# TODO fix this later, need to move on
+#- name: Start TigerVNC
+#  service:
+#    name: vncserver@:2.service
+#    state: restarted
+#    enabled: yes

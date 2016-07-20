@@ -1,0 +1,24 @@
+---
+security_rules:
+  - proto: tcp
+    from_port: 22
+    to_port: 22
+    cidr_ip: 0.0.0.0/0
+  - proto: tcp
+    from_port: 5902
+    to_port: 5902
+    cidr_ip: 0.0.0.0/0
+  - proto: tcp
+    from_port: 80
+    to_port: 80
+    cidr_ip: 192.168.0.0/16
+  - proto: tcp
+    from_port: 443
+    to_port: 443
+    cidr_ip: 192.168.0.0/16
+  - proto: icmp
+    from_port: -1
+    to_port: -1
+    cidr_ip: 192.168.0.0/16
+  - proto: all
+    group_name: "{{ cluster_id }}-sg"

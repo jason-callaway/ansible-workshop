@@ -1,0 +1,4 @@
+---
+- include: vnc.yml
+  tags:
+    - vnc

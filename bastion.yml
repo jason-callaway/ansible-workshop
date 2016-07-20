@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  become: false
+  roles:
+    - rhtps.private-aws
+    - rhtps.800-53
+
+- hosts: "tag_instance_role_{{ cluster_id }}_webserver"
+  gather_facts: no
+  become: true
+  pre_tasks:
+    # set up yum
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: enable and start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+  roles:
+    - rhtps.800-53

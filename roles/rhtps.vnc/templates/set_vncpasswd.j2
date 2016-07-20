@@ -1,0 +1,8 @@
+#!/bin/sh
+
+username={{ vncuser }}
+password={{ vncpass }}
+
+mkdir /home/$username/.vnc
+echo ${password} | vncpasswd -f > /home/${username}/.vnc/passwd
+chown -R ${username}:${username} /home/${username}/.vnc

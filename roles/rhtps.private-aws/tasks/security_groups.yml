@@ -1,0 +1,17 @@
+---
+- name: Run sg template
+  template: src=security_groups.j2 dest=./roles/ansible-private-aws/vars/rules.yml
+
+- name: Load sg vars
+  include_vars: rules.yml
+
+- name: Update rules
+  ec2_group:
+    name: "{{ cluster_id }}-sg"
+    description: "{{ cluster_id }} security group"
+    region: "{{ ec2_region }}"
+    vpc_id: "{{ public_vpc_id }}"
+    rules: "{{ security_rules }}"
+    rules_egress:
+      - proto: all
+        cidr_ip: 0.0.0.0/0

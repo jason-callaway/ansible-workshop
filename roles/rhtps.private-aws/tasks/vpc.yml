@@ -1,0 +1,102 @@
+---
+- name: Create ec2 private vpc
+  ec2_vpc:
+    state: present
+    dns_support: yes
+    dns_hostnames: yes
+    cidr_block: "{{ private_cidr_b }}"
+    resource_tags:
+      env: "{{ cluster_id }}"
+      Name: "{{ cluster_id }}-private"
+    region: "{{ ec2_region }}"
+    subnets:
+    - cidr: "{{ private_cidr_c_sidea }}"
+      az: "{{ ec2_region_sidea }}"
+      resource_tags:
+        env: "{{ cluster_id }}"
+        Name: "{{ cluster_id }}-private-sidea"
+        parent_vpc: "{{ cluster_id }}-private"
+    - cidr: "{{ private_cidr_c_sideb }}"
+      az: "{{ ec2_region_sideb }}"
+      resource_tags:
+        env: "{{ cluster_id }}"
+        Name: "{{ cluster_id }}-private-sideb"
+        parent_vpc: "{{ cluster_id }}-private"
+    internet_gateway: no
+    wait: yes
+  register: private_vpc
+
+- name: Create ec2 public vpc
+  ec2_vpc:
+    state: present
+    dns_support: yes
+    dns_hostnames: yes
+    cidr_block: "{{ public_cidr_b }}"
+    resource_tags:
+      env: "{{ cluster_id }}"
+      Name: "{{ cluster_id }}-public"
+    region: "{{ ec2_region }}"
+    subnets:
+    - cidr: "{{ public_cidr_c_sidea }}"
+      az: "{{ ec2_region_sidea }}"
+      resource_tags:
+        env: "{{ cluster_id }}"
+        Name: "{{ cluster_id }}-public-sidea"
+        parent_vpc: "{{ cluster_id }}-public"
+    internet_gateway: yes
+    wait: yes
+  register: public_vpc
+
+- name: Create VPC peering Connection
+  ec2_vpc_peer:
+    region: "{{ ec2_region }}"
+    vpc_id: "{{ public_vpc.vpc_id }}"
+    peer_vpc_id: "{{ private_vpc.vpc_id }}"
+    state: present
+    tags:
+      Name: "{{ cluster_id }}-public-private-conn"
+      env: "{{ cluster_id }}"
+  register: vpc_peer
+
+- name: Accept VPC peering request
+  ec2_vpc_peer:
+    region: "{{ ec2_region }}"
+    peering_id: "{{ vpc_peer.peering_id }}"
+    state: accept
+    tags:
+      Name: "{{ cluster_id }}-public-private-req"
+      env: "{{ cluster_id }}"
+  register: action_peer
+
+- name: Set up private subnet route tables
+  ec2_vpc_route_table:
+    vpc_id: "{{ private_vpc.vpc_id }}"
+    region: "{{ ec2_region }}"
+    tags:
+      Name: private
+      env: "{{ cluster_id }}"
+    subnets:
+      - "{{ private_vpc.subnets.0.id }}"
+      - "{{ private_vpc.subnets.1.id }}"
+    routes:
+#      - dest: "{{ private_cidr_b }}"
+      - dest: "{{ public_cidr_b }}"
+        vpc_peering_connection_id: "{{ vpc_peer.peering_id }}"
+  register: private_route_table
+
+- name: Set up public subnet route tables
+  ec2_vpc_route_table:
+    vpc_id: "{{ public_vpc.vpc_id }}"
+    region: "{{ ec2_region }}"
+    tags:
+      Name: public
+      env: "{{ cluster_id }}"
+    subnets:
+      - "{{ public_vpc.subnets.0.id }}"
+    routes:
+#      - dest: "{{ public_cidr_b }}"
+      - dest: "{{ private_cidr_b }}"
+        vpc_peering_connection_id: "{{ vpc_peer.peering_id }}"
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ public_vpc.igw_id }}"
+  register: public_route_table
