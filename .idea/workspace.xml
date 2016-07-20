@@ -2,87 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b270580c-00ca-4e1b-91e2-a9f5ea5e6754" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ansible-workshop.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ansible.cfg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ansible_bastion.cfg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bastion.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/env.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/group_vars/all.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/inventory/aws/hosts/ec2.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/inventory/aws/hosts/ec2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/defaults/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/files/audit.rules.tmp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/files/audit.rules.tmp.backup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/files/bluetooth.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/files/control-alt-delete.override" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/files/issue" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/files/usb-storage.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/handlers/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/meta/.galaxy_install_info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/meta/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/800_53.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/access_control.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/audit_and_accountability.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/configuration_management.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/identification_and_authentication.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/incident_response.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/maintenance.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/media_protection.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/misc.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/scap.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/system_and_communications_protection.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/system_and_information_integregity.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tasks/system_and_services_acquisition.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/templates/audit.rules.j2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tests/inventory" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.800-53/tests/test.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/defaults/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/handlers/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/meta/.galaxy_install_info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/meta/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/instances.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/instances/create_instance.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/private_aws.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/security_groups.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/vpc.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/vpc/get_ids_created.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/vpc/get_ids_extant.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/templates/security_groups.j2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/templates/ssh_bastion.j2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tests/inventory" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/tests/test.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.private-aws/vars/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/defaults/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/env.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/handlers/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/meta/.galaxy_install_info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/meta/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/tasks/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/tasks/vnc.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/templates/set_vncpasswd.j2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/tests/inventory" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/tests/test.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roles/rhtps.vnc/vars/main.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sendit.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bastion.yml" afterPath="$PROJECT_DIR$/bastion.yml" />
     </list>
     <ignored path="ansible-workshop.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -180,7 +101,7 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="all.yml" pinned="false" current-in-tab="true">
+          <file leaf-file-name="all.yml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/group_vars/all.yml">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="75">
@@ -200,11 +121,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="bastion.yml" pinned="false" current-in-tab="false">
+          <file leaf-file-name="bastion.yml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/bastion.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+                <state relative-caret-position="375">
+                  <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
                   <folding />
                 </state>
               </provider>
@@ -231,8 +152,8 @@
         <option value="$PROJECT_DIR$/roles/rhtps.private-aws/vars/main.yml" />
         <option value="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/instances/create_instance.yml" />
         <option value="$PROJECT_DIR$/sendit.sh" />
-        <option value="$PROJECT_DIR$/bastion.yml" />
         <option value="$PROJECT_DIR$/roles/rhtps.private-aws/tasks/instances.yml" />
+        <option value="$PROJECT_DIR$/bastion.yml" />
       </list>
     </option>
   </component>
@@ -692,6 +613,14 @@
       <option name="presentableId" value="Default" />
       <updated>1469034758973</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fleshing out the workshop">
+      <created>1469044864532</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1469044864532</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -706,7 +635,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3300423" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -721,6 +650,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fleshing out the workshop" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fleshing out the workshop" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -858,14 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bastion.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/group_vars/all.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -902,6 +827,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="133" column="35" selection-start-line="133" selection-start-column="35" selection-end-line="133" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bastion.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
           <folding />
         </state>
       </provider>

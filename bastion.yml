@@ -6,6 +6,8 @@
   roles:
     - rhtps.private-aws
     - rhtps.800-53
+  post_tasks:
+    - meta: refresh_inventory
 
 - hosts: "tag_instance_role_{{ cluster_id }}_webserver"
   gather_facts: no
@@ -21,5 +23,6 @@
         name: httpd
         state: started
         enabled: yes
+    # put something unique in each index.html
   roles:
     - rhtps.800-53
