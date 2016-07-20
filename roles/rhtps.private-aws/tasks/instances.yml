@@ -125,8 +125,15 @@
   retries: 60
   delay: 60
 
-- local_action:
-    module: ec2_elb_lb
+- name: create yum repo config
+  connection: local
+  template:
+    src: bastion_repo.j2
+    dest: ./bastion.repo
+
+- name: create and deploy the ELB
+  connection: local
+  ec2_elb_lb:
     name: "{{ cluster_id }}_elb"
     state: present
     subnets:
