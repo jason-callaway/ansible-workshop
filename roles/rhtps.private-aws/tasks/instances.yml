@@ -147,6 +147,13 @@
     src: bastion_repo.j2
     dest: ./bastion.repo
 
+- name: install the ssh config
+  copy:
+    src: config
+    dest: /home/ec2-user/.ssh/config
+    user: ec2-user
+    mode: 0644
+
 - set_fact: ec2_private_instances_list="{{ item }}"
   with_items:
     - "{{ ec2_private_webservers_sidea }}"

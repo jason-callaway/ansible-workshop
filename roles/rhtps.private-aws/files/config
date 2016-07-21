@@ -1,0 +1,4 @@
+Host *
+  User ec2-user
+  ForwardAgent yes
+  StrictHostKeyChecking no
