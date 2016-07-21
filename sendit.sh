@@ -6,5 +6,5 @@ ansible-playbook -i inventory/aws/hosts/ec2.py bastion.yml && \
 # hosts file and the Ansible config which tunnels through the bastion
 # host.
 export ANSIBLE_CONFIG=./ansible_bastion.cfg && \
-ansible-playbook -i inventory/static/hosts private.yml
+ansible-playbook -i inventory/static/hosts webservers.yml
 

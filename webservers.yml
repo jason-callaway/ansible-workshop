@@ -1,42 +1,8 @@
 ---
-- hosts: "tag_instance_role_{{ cluster_id }}_webserver"
-  gather_facts: no
+- hosts: all
+  gather_facts: yes
   become: true
-  pre_tasks:
-    - name: remove existing yum repo configs
-      file:
-        path: "{{ item }}"
-        state: absent
-      with_items:
-        - /etc/yum.repos.d/redhat.repo
-        - /etc/yum.repos.d/redhat-rhui.repo
-        - /etc/yum.repos.d/redhat-rhui-client-config.repo
-        - /etc/yum.repos.d/rhui-load-balancers.conf
-
-    - name: install custom yum repo
-      copy:
-        src: ./bastion.repo
-        dest: /etc/yum.repos.d/bastion.repo
-        owner: root
-        mode: 0644
-
-    - name: install httpd
-      yum:
-        name: httpd
-        state: latest
-
-    - name: enable and start httpd
-      service:
-        name: httpd
-        state: started
-        enabled: yes
-
-    - name: put hostname in index.html
-      template:
-        src: index.j2
-        dest: /var/www/html/index.html
-        owner: apache
-        mode: 0644
-
   roles:
+    - private-httpd
     - rhtps.800-53
+

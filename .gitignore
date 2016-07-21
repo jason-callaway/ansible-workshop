@@ -90,3 +90,6 @@ ENV/
 
 .idea/*
 secrets/*
+ansible_workshop.pem
+*.retry
+ssh_bastion.cfg

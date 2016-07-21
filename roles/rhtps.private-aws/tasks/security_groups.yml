@@ -1,6 +1,8 @@
 ---
 - name: Run sg template
-  template: src=security_groups.j2 dest=./roles/ansible-private-aws/vars/rules.yml
+  template:
+    src: security_groups.j2
+    dest: ./roles/rhtps.private-aws/vars/rules.yml
 
 - name: Load sg vars
   include_vars: rules.yml

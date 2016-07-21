@@ -5,4 +5,11 @@
   become: false
   roles:
     - rhtps.private-aws
+  post_tasks:
+    - meta: refresh_inventory
+
+- hosts: bastions
+  gather_facts: yes
+  become: true
+  roles:
     - rhtps.800-53

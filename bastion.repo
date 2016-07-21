@@ -1,17 +1,17 @@
 [rhel-7-server-rpms]
 name = RHEL 7 Server RPMS
-baseurl = http://{{ bastion_private_ip }}/rhel-7-server-rpms
+baseurl = http://10.0.1.73/rhel-7-server-rpms
 enabled = 1
 gpgcheck = 0
 
 [rhel-7-server-optional-rpms]
 name = RHEL 7 Server Optional RPMS
-baseurl = http://{{ bastion_private_ip }}/rhel-7-server-optional-rpms
+baseurl = http://10.0.1.73/rhel-7-server-optional-rpms
 enabled = 1
 gpgcheck = 0
 
 [rhel-7-server-extras-rpms]
 name = RHEL 7 Server Extra RPMS
-baseurl = http://{{ bastion_private_ip }}/rhel-7-server-extras-rpms
+baseurl = http://10.0.1.73/rhel-7-server-extras-rpms
 enabled = 1
 gpgcheck = 0

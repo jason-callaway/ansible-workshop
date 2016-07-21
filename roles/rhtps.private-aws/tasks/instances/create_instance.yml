@@ -14,7 +14,7 @@
     exact_count: "{{ item['count'] }}"
     count_tag:
       Name: "{{ my_Name }}"
-      instance_role: "{{ my_instance_role }}"
+      instance_role: "{{ cluster_id }}_{{ my_instance_role }}"
       env: "{{ my_env }}"
       side: "{{ my_side }}"
     wait: yes

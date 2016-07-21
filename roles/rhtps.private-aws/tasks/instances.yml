@@ -1,17 +1,9 @@
 ---
 - include: vpc/get_ids_created.yml
-  when: create_vpcs
   # Sets the following facts:
   #   public_vpc_id
   #   public_subnet_id
   #   private_vpc_id
-  #   private_subnet_id_sidea
-  #   private_subnet_id_sideb
-
-- include: vpc/get_ids_extant.yml
-  when: not create_vpcs
-  # Sets the following facts:
-  #   public_subnet_id
   #   private_subnet_id_sidea
   #   private_subnet_id_sideb
 
@@ -54,6 +46,7 @@
 - name: Create ec2 public bastion instances
   include: instances/create_instance.yml
   vars:
+    ec2_image: "ami-82fc7595"
     my_type: "{{ item['type'] }}"
     my_group_id: "{{ public_security_group.group_id }}"
     my_Name: "{{ cluster_id }}-{{ item['role'] }}-instance"
@@ -74,9 +67,10 @@
 - set_fact:
     bastion_instance_id: "{{ ec2_public_instances[0].id }}"
 
-- add_host: name="{{ ec2_public_instances[0].public_dns_name }}" groups=bastion
+- add_host: name="{{ ec2_public_instances[0].public_dns_name }}" groups=bastions
 
 - set_fact: bastion_fqdn="{{ ec2_public_instances[0].public_dns_name }}"
+- set_fact: bastion_private_ip="{{ ec2_public_instances[0].private_ip }}"
 
 - name: Create the bastion ssh config file
   connection: local
@@ -84,7 +78,6 @@
     src: ssh_bastion.j2
     dest: ./ssh_bastion.cfg
 
-# TODO when I'm less lazy, paramaterize this better and repeat less code
 - name: Create ec2 private webservers on side a
   include: instances/create_instance.yml
   vars:
@@ -103,6 +96,26 @@
 
 - set_fact:
     ec2_private_webservers_sidea: "{{ ec2.results[0].tagged_instances }}"
+  when: ec2.results[0].tagged_instances is defined and ec2.results[0].tagged_instances
+
+- name: Create ec2 private webservers on side b
+  include: instances/create_instance.yml
+  vars:
+    my_type: "{{ item['type'] }}"
+    my_group_id: "{{ private_security_group.group_id }}"
+    my_Name: "{{ cluster_id }}-{{ item['role'] }}-instance"
+    my_instance_role: "{{ item['role'] }}"
+    my_env: "{{ cluster_id }}"
+    my_side: "sideb"
+    my_vpc_subnet_id: "{{ private_subnet_id_sideb }}"
+    my_items: "{{ private_manifest['webservers'] }}"
+
+- set_fact:
+    ec2_private_webservers_sideb:  "{{ ec2.results[0].instances }}"
+  when: ec2.results[0].instances is defined and ec2.results[0].instances
+
+- set_fact:
+    ec2_private_webservers_sideb: "{{ ec2.results[0].tagged_instances }}"
   when: ec2.results[0].tagged_instances is defined and ec2.results[0].tagged_instances
 
 - name: Create the bastion ssh config file
@@ -131,16 +144,62 @@
     src: bastion_repo.j2
     dest: ./bastion.repo
 
-- name: create and deploy the ELB
+- set_fact: ec2_private_instances_list="{{ item }}"
+  with_items:
+    - "{{ ec2_private_webservers_sidea }}"
+    - "{{ ec2_private_webservers_sideb }}"
+  register: ec2_private_instances_list_result
+
+- set_fact: ec2_private_instances="{{ ec2_private_instances_list_result.results | map(attribute='ansible_facts.ec2_private_instances_list') | list }}"
+
+#- name: make list of internal ips
+#  set_fact:
+#    private_ip_item: "{{ item.private_ip }}"
+#  with_items:
+#    - "{{ ec2_private_instances }}"
+#  register: private_ips_result
+#
+#- name: make a better list of internal ips
+#  set_fact:
+#    private_ips: "{{ private_ips_result.results | map(attribute='ansible_facts.private_ip_item') | list }}"
+
+- name: add instances to host group
+  add_host: name={{ item.public_dns_name }} groups=private_aws
+  with_items:
+    - "{{ ec2_private_instances }}"
+
+- name: create the host file for private instances
   connection: local
-  ec2_elb_lb:
-    name: "{{ cluster_id }}_elb"
-    state: present
-    subnets:
-      - "{{ private_subnet_id_sidea }}"
-      - "{{ private_subnet_id_sideb }}"
-    listeners:
-      - protocol: http # options are http, https, ssl, tcp
-        load_balancer_port: 80
-        instance_port: 80
-        proxy_protocol: True
+  template:
+    src: private_hosts.j2
+    dest: ./inventory/static/hosts
+
+#- name: create and deploy the ELB
+#  connection: local
+#  ec2_elb_lb:
+#    name: "{{ cluster_id.replace('_','') }}elb"
+#    region: "{{ ec2_region }}"
+#    state: present
+#    scheme: internal
+#    subnets:
+#      - "{{ private_subnet_id_sidea }}"
+#      - "{{ private_subnet_id_sideb }}"
+#    instances:
+#      - "{{ ec2_private_instances.0.id }}"
+#      - "{{ ec2_private_instances.1.id }}"
+#    listeners:
+#      - protocol: http
+#        load_balancer_port: 80
+#        instance_port: 80
+#        proxy_protocol: True
+#    health_check:
+#        ping_protocol: http
+#        ping_port: 80
+#        ping_path: "/index.html"
+#        response_timeout: 5
+#        interval: 60
+#        unhealthy_threshold: 40
+#        healthy_threshold: 10
+#  register: elb
+#
+#- debug: var=elb
