@@ -10,7 +10,7 @@
         owner: ec2-user
         mode: 0644
 
-- hosts: all
+- hosts: webservers
   gather_facts: yes
   become: true
   roles:
