@@ -1,4 +1,15 @@
 ---
+- hosts: bastions
+  gather_facts: no
+  become: true
+  tasks:
+    - name: install the ssh config
+      copy:
+        src: ./config
+        dest: ~/.ssh/config
+        owner: ec2-user
+        mode: 0644
+
 - hosts: all
   gather_facts: yes
   become: true

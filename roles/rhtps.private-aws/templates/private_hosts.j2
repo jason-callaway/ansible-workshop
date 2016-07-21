@@ -2,3 +2,6 @@
 {% for ip in ec2_private_instances %}
 {{ ip.private_ip }}
 {% endfor %}
+
+[bastions]
+{{ bastion_fqdn }}
