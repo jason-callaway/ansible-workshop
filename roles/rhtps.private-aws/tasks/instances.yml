@@ -139,7 +139,7 @@
   delay: 60
 
 - name: pausing to give the private instances another moment to start (bonus points to whomever tells the best joke)
-  pause: seconds=240
+  pause: seconds=300
 
 - name: create yum repo config
   connection: local
