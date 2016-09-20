@@ -138,8 +138,8 @@
   retries: 60
   delay: 60
 
-- name: pausing to give the private instances another moment to start
-  pause: seconds=60
+- name: pausing to give the private instances another moment to start (bonus points to whomever tells the best joke)
+  pause: seconds=240
 
 - name: create yum repo config
   connection: local
